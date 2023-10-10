@@ -44,9 +44,6 @@ public class GameBoard {
             System.out.println(Arrays.toString(sides[i]));
             for (int j = 0; j < 3; j++) {
                 String temp = null;
-                sidePairs[0] = .;
-                l1++;
-                l2--;
             }
             for (String sidePair : sidePairs) {
                 if (!pairList.contains(sidePair)) {

@@ -1,29 +1,43 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class pairs_test {
-    public static void main(String[] args) {
-    String[] illegalPairs = new String[36];
-    String[][] letters = new String[4][3];
-    char[0] = ['a','b','c'];
-    chsr[1] = ['d','e','f'];
-    char[2] = ['g','h','i'];
-    letters[3] = ['j','k','l'];
+
+    static char[] side1 = new char[]{'a','b','c'};
+    static char[] side2 = new char[]{'d','e','f'};
+    static char[] side3 = new char[]{'g','h','i'};
+    static char[] side4 = new char[]{'j','k','l'};
+    static char[][] sides = new char[][]{side1, side2, side3, side4};
+
+    static String[] findIllegalPairs(char[][] sides) {
+        int i, j, k;
+        List<String> pairsList = new ArrayList<>();
+        for (i = 0; i < 4; i++) {
+            System.out.println("Side:");
+            char[] side = Arrays.copyOf(sides[i], 3);
+            System.out.println(Arrays.toString(side) + "\nPairs:");
+            for (j = 0; j < 3; j++) {
+                for (k = 0; k < 3; k++) {
+                    String pair = "".concat(String.valueOf(side[j])).concat(String.valueOf(side[k]));
+                    System.out.println(pair);
+                    if (!pairsList.contains(pair)) {
+                        pairsList.add(pair);
+                    }
+                }
+            }
+        }
+
+        return pairsList.toArray(new String[0]);
     }
 
-    static String[] findIllegalPairs(char[][] letters) {
-        int l1 = 0;
-        int l2 = 1;
-        int l3 = 2;
-        for (int i = 0; i < 4; i++) {
-            String p1 = (letters[i][l1] + letters[i][l2]);
-            String p2 = (letters[i][l1]+ letters[i][l3]);
-            String p3 = (letters[i][l1] + letters[i][l1]);
-            String p4 = (letters[i][l2] + letters[i][l1]);
-            String p5 = (letters[i][l3] + letters[i][l1]);
 
-        }
+    public static void main(String[] args) {
+        String[] pairs = findIllegalPairs(sides);
+        //System.out.println(Arrays.toString(pairs));
 
     }
 }
+
+
