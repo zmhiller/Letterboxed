@@ -5,8 +5,8 @@ public class testMain {
     public static void main(String[] args) {
 
         GameBoard testBoard = new GameBoard(TEST_LETTERS);
-        System.out.printf("\nInput String: \t%s\n----------------------------------------------\n", TEST_LETTERS);
-
+        System.out.printf("\nInput String: \t%s\n", TEST_LETTERS);
+        System.out.println("----------------------------------------------");
         outputTests.printSides(testBoard);
         outputTests.printIllegalPairs(testBoard);
     }
