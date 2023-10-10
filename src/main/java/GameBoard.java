@@ -30,34 +30,29 @@ public class GameBoard {
         }
     }
 
-    private static void defineIllegalPairs(char[][] sides) {
-        List<String> pairList = new ArrayList<String>();
-        System.out.println(Arrays.deepToString(sides));
-        int l1 = 0;
-        int l2 = 1;
-        int l3 = 2;
-
-        for (int i = 0; i < sides.length; i++) {
-            String[] sidePairs = new String[9];
-            System.out.println();
-            String side = Arrays.toString(sides[i]);
-            System.out.println(Arrays.toString(sides[i]));
-            for (int j = 0; j < 3; j++) {
-                String temp = null;
-            }
-            for (String sidePair : sidePairs) {
-                if (!pairList.contains(sidePair)) {
-                    pairList.add(sidePair);
+    private static String[] defineIllegalPairs(char[][] sides) {
+        int i, j, k;
+        List<String> pairsList = new ArrayList<>();
+        for (i = 0; i < 4; i++) {
+            System.out.println("Side:");
+            char[] side = Arrays.copyOf(sides[i], 3);
+            System.out.println(Arrays.toString(side) + "\nPairs:");
+            for (j = 0; j < 3; j++) {
+                for (k = 0; k < 3; k++) {
+                    String pair = "".concat(String.valueOf(side[j])).concat(String.valueOf(side[k]));
+                    System.out.println(pair);
+                    if (!pairsList.contains(pair)) {
+                        pairsList.add(pair);
+                    }
                 }
             }
         }
+
+        return pairsList.toArray(new String[0]);
     }
 
     public static void main(String[] args) {
-        char[] testletters = "abcdefghijkl".toCharArray();
-        char[][] testsides = defineSides(testletters);
-        //printSides(testsides);
-        defineIllegalPairs(testsides);
+
     }
 }
 
