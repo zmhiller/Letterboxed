@@ -1,19 +1,25 @@
 import java.util.Arrays;
 
 public class outputTests {
+    static String TEST_LETTERS = "abcdefghijkl";
 
-        static String TEST_LETTERS = "abcdefghijkl";
-        static char[][] TEST_SIDES = GameBoard.defineSides(TEST_LETTERS.toCharArray());
-        static String[] ILLEGAL_PAIRS = GameBoard.defineIllegalPairs(TEST_SIDES);
+
+    public static void printSides(GameBoard board) {
+        System.out.println("                    Sides\n    TOP        RGT        BOT        LFT");
+        System.out.println(Arrays.deepToString(board.sides));
+    }
+
+    public static void printIllegalPairs(GameBoard board) {
+        String pairs = Arrays.toString(board.illegalPairs);
+        int numPairs = board.illegalPairs.length;
+        System.out.printf("\nIllegal Pairs:\n %s | Total: (%d)", pairs, numPairs);
+    }
 
     public static void main(String[] args) {
         GameBoard testBoard = new GameBoard(TEST_LETTERS);
-        testBoard.defineSides();
-        testBoard.printSides();
-        //GameBoard.defineSides(testBoard.letterArray);
-        //GameBoard.printSides(TEST_SIDES);
-        String illegalPairs = Arrays.toString(ILLEGAL_PAIRS);
-        int numPairs = ILLEGAL_PAIRS.length;
-        System.out.printf("\nIllegal Pairs:\n %s | Total: (%d)", illegalPairs, numPairs);
+        System.out.printf("\nInput String: \t%s\n----------------------------------------------\n", TEST_LETTERS);
+
+        printSides(testBoard);
+        printIllegalPairs(testBoard);
     }
 }
