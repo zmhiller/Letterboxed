@@ -1,8 +1,6 @@
 import java.util.Arrays;
 
 public class outputTests {
-    static String TEST_LETTERS = "abcdefghijkl";
-
 
     public static void printSides(GameBoard board) {
         System.out.println("                    Sides\n    TOP        RGT        BOT        LFT");
@@ -16,10 +14,5 @@ public class outputTests {
     }
 
     public static void main(String[] args) {
-        GameBoard testBoard = new GameBoard(TEST_LETTERS);
-        System.out.printf("\nInput String: \t%s\n----------------------------------------------\n", TEST_LETTERS);
-
-        printSides(testBoard);
-        printIllegalPairs(testBoard);
     }
 }
