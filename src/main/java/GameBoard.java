@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class GameBoard {
 
     GameBoard(char[] letters) {
@@ -7,7 +11,7 @@ public class GameBoard {
     // i = side number (Top-0, Right-1, Bottom-2,Left-3
     //j = letter position (clockwise)
     public static char[][] defineSides(char[] letters) {
-        char[][] sides = new char[4][5];
+        char[][] sides = new char[4][3];
         int l = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 3; j++) {
@@ -26,23 +30,37 @@ public class GameBoard {
         }
     }
 
-    private static String[] defineIllegalPairs(char[][] sides) {
-        String[] pairs = new String[24];
-        String[] letters = new String[6];
-        int j = 0;
-        for (int i = 0; i < 4; i++) {
-            for (int l = 0; l < 24; l++) {
-                letters[l] = String.valueOf(sides[i][j] + sides[i][j += 1]); //0,1
-                letters[l+=1] = String.valueOf(sides[i][j] + sides[i][j += 1]); //1,2
+    private static void defineIllegalPairs(char[][] sides) {
+        List<String> pairList = new ArrayList<String>();
+        System.out.println(Arrays.deepToString(sides));
+        int l1 = 0;
+        int l2 = 1;
+        int l3 = 2;
+
+        for (int i = 0; i < sides.length; i++) {
+            String[] sidePairs = new String[9];
+            System.out.println();
+            String side = Arrays.toString(sides[i]);
+            System.out.println(Arrays.toString(sides[i]));
+            for (int j = 0; j < 3; j++) {
+                String temp = null;
+                sidePairs[0] = .;
+                l1++;
+                l2--;
+            }
+            for (String sidePair : sidePairs) {
+                if (!pairList.contains(sidePair)) {
+                    pairList.add(sidePair);
+                }
             }
         }
-        return pairs;
     }
 
     public static void main(String[] args) {
         char[] testletters = "abcdefghijkl".toCharArray();
         char[][] testsides = defineSides(testletters);
-        printSides(testsides);
+        //printSides(testsides);
+        defineIllegalPairs(testsides);
     }
 }
 
