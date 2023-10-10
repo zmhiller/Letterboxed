@@ -7,3 +7,6 @@
 	- Word length (short <> long)
 	- Letters used (least <> most)
 	- Number of words (least <> most)
+- [ ] Valid Wordlist sorting
+- [ ] Wordlist output
+- [ ] GUI
