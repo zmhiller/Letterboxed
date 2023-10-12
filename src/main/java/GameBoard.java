@@ -4,25 +4,23 @@ import java.util.List;
 
 public class GameBoard {
 
-    String letters;
     char[][] sides;
     String[] illegalPairs;
 
     GameBoard(String letters) {
-        this.letters = letters;
-        this.sides = defineSides(letters.toCharArray());
+        this.sides = defineSides(letters);
         this.illegalPairs = defineIllegalPairs(sides);
     }
 
     // i = side number (Top-0, Right-1, Bottom-2,Left-3
     //j = letter position (clockwise)
-    public static char[][] defineSides(char[] letters) {
-        //char[] letterArray = letters.toCharArray();
+    public static char[][] defineSides(String letters) {
+        char[] letterArray = letters.toCharArray();
         char[][] sides = new char[4][3];
         int l = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 3; j++) {
-                sides[i][j] = letters[l];
+                sides[i][j] = letterArray[l];
                 l++;
             }
         }
@@ -47,7 +45,6 @@ public class GameBoard {
     }
 
     public static void main(String[] args) {
-
     }
 }
 
