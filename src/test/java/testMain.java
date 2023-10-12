@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class testMain {
 
     static String TEST_LETTERS = "abcdefghijkl";
@@ -11,3 +13,7 @@ public class testMain {
         outputTests.printIllegalPairs(testBoard);
     }
 }
+
+
+
+
