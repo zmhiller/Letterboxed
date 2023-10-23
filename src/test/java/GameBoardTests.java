@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
+import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,6 +34,13 @@ public class GameBoardTests {
             System.out.print("PASS\n");
         } catch (AssertionFailedError e) {
             System.out.print("FAIL\n");
+        }
+    }
+
+    public static void dictionaryReadTest() throws Exception {
+        List<String[]> testDictionary = IO.parseDictForValidWords((Path.of("src/main/resources/dictionary-test.csv")), testBoard.illegalPairs);
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Arrays.toString(testDictionary.get(i)));
         }
     }
 }

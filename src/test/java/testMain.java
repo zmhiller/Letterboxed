@@ -16,12 +16,13 @@ public class testMain {
         System.out.print(resultLine);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.printf("\nInput String: \t%s\n", TEST_LETTERS);
         System.out.println("--------------------------------------------------");
 
         GameBoardTests.sidesTest();
         GameBoardTests.illegalPairsTest();
+        GameBoardTests.dictionaryReadTest();
     }
 }
 
