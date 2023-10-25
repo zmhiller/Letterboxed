@@ -38,14 +38,14 @@ public class GameBoardTests {
     }
 
     public static void dictionaryReadTest() throws Exception {
-        List<String[]> testDictionary = IO.parseDictForValidWords((Path.of("src/main/resources/dictionary-test.csv")), testBoard);
+        List<String[]> testDictionary = IO.parseDictionary((Path.of("src/main/resources/dictionary-test.csv")), testBoard);
         for (int i = 0; i < 100; i++) {
             System.out.println(Arrays.toString(testDictionary.get(i)));
         }
     }
 
     public static void eliminateWordsWithInvalidLettersTest(String word) {
-        if (IO.checkForValidLetters(word, testBoard.letters)) {
+        if (IO.hasValidLetters(word, testBoard.letters)) {
             System.out.println("ALL LETTERS VALID");
         } else {
             System.out.println("INVALID LETTERS");

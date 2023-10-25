@@ -6,12 +6,12 @@ import java.util.List;
 
 public class IO {
 
-    public static List<String[]> parseDictForValidWords(Path dictionary, GameBoard board) throws Exception {
+    public static List<String[]> parseDictionary(Path dictionary, GameBoard board) throws Exception {
         List<String[]> list = new ArrayList<>();
         try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(dictionary))) {
             String[] line;
             while ((line = csvReader.readNext()) != null) {
-                if (checkForIllegalPairs(line[0], board.illegalPairs) && (checkForValidLetters(line[0], board.letters))) {
+                if (validateWord(line[0], board)) {
                     list.add(line);
                 }
             }
@@ -19,8 +19,12 @@ public class IO {
         return list;
     }
 
-    public static boolean checkForValidLetters(String word, String letters) {
-        char[] lettersArray = letters.toLowerCase().toCharArray();
+    public static boolean validateWord(String word, GameBoard board) {
+        return (hasValidLetters(word, board) && hasValidPairs(word, board));
+    }
+
+    public static boolean hasValidLetters(String word, GameBoard board) {
+        char[] lettersArray = board.letters.toLowerCase().toCharArray();
         char[] wordArray = word.toLowerCase().toCharArray();
         int i, j;
         for (i = 0; i < wordArray.length; i++) {
@@ -35,8 +39,8 @@ public class IO {
         return true;
     }
 
-    public static boolean checkForIllegalPairs(String word, String[] illegalPairs) {
-        for (String pair : illegalPairs) {
+    public static boolean hasValidPairs(String word, GameBoard board) {
+        for (String pair : board.illegalPairs) {
             if (word.toLowerCase().contains(pair)) {
                 return false;
             }
