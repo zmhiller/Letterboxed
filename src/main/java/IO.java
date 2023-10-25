@@ -24,4 +24,20 @@ public class IO {
         }
         return list;
     }
+    
+    public static boolean checkForValidLetters(String word, String letters) {
+        char[] lettersArray = letters.toLowerCase().toCharArray();
+        char[] wordArray = word.toLowerCase().toCharArray();
+        int i, j;
+        for (i = 0; i < wordArray.length; i++) {
+            for (j = 0; j < lettersArray.length; j++) {
+                if (wordArray[i] == lettersArray[j]) {
+                    break;
+                }
+            } if (j == lettersArray.length) {
+                return  false;
+            }
+        }
+        return true;
+    }
 }

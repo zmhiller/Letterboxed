@@ -43,4 +43,12 @@ public class GameBoardTests {
             System.out.println(Arrays.toString(testDictionary.get(i)));
         }
     }
+
+    public static void eliminateWordsWithInvalidLettersTest(String word) {
+        if (IO.checkForValidLetters(word, testBoard.letters)) {
+            System.out.println("ALL LETTERS VALID");
+        } else {
+            System.out.println("INVALID LETTERS");
+        }
+    }
 }

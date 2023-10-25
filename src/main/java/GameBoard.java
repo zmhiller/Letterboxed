@@ -4,10 +4,12 @@ import java.util.List;
 
 public class GameBoard {
 
+    String letters;
     char[][] sides;
     String[] illegalPairs;
 
     GameBoard(String letters) {
+        this.letters = letters;
         this.sides = defineSides(letters);
         this.illegalPairs = defineIllegalPairs(sides);
     }

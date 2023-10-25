@@ -23,6 +23,7 @@ public class testMain {
         GameBoardTests.sidesTest();
         GameBoardTests.illegalPairsTest();
         GameBoardTests.dictionaryReadTest();
+        GameBoardTests.eliminateWordsWithInvalidLettersTest("adage");
     }
 }
 
