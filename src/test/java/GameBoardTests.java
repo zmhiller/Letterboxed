@@ -38,7 +38,7 @@ public class GameBoardTests {
     }
 
     public static void dictionaryReadTest() throws Exception {
-        List<String[]> testDictionary = IO.parseDictForValidWords((Path.of("src/main/resources/dictionary-test.csv")), testBoard.illegalPairs);
+        List<String[]> testDictionary = IO.parseDictForValidWords((Path.of("src/main/resources/dictionary-test.csv")), testBoard);
         for (int i = 0; i < 100; i++) {
             System.out.println(Arrays.toString(testDictionary.get(i)));
         }
