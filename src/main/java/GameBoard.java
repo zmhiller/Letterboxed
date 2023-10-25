@@ -1,3 +1,4 @@
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,11 +8,13 @@ public class GameBoard {
     String letters;
     char[][] sides;
     String[] illegalPairs;
+    List<String[]> validWords;
 
-    GameBoard(String letters) {
+    GameBoard(String letters) throws Exception {
         this.letters = letters;
         this.sides = defineSides(letters);
         this.illegalPairs = defineIllegalPairs(sides);
+        validWords = IO.parseDictionary(Path.of("src/main/resources/dictionary-test.csv"), this);
     }
 
     // i = side number (Top-0, Right-1, Bottom-2,Left-3

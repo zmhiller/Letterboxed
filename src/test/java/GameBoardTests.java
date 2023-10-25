@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import java.nio.file.Path;
@@ -8,12 +7,21 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameBoardTests {
-    static GameBoard testBoard = new GameBoard(testMain.TEST_LETTERS);
+    static GameBoard testBoard;
+
+    static {
+        try {
+            testBoard = new GameBoard(testMain.TEST_LETTERS);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     static String EXPECTED_SIDES = "[[a, b, c], [d, e, f], [g, h, i], [j, k, l]]";
     static String EXPECTED_ILLEGAL_PAIRS = "[aa, ab, ac, ba, bb, bc, ca, cb, cc, dd, de, df, ed, ee, ef, " +
             "fd, fe, ff, gg, gh, gi, hg, hh, hi, ig, ih, ii, jj, jk, jl, kj, kk, kl, lj, lk, ll]";
 
-    @Test
+
     public static void sidesTest() {
         String ACTUAL_SIDES = Arrays.deepToString(testBoard.sides);
         testMain.printTestResult("Sides Test");
@@ -25,7 +33,6 @@ public class GameBoardTests {
         }
     }
 
-    @Test
     public static void illegalPairsTest() {
         String ACTUAL_ILLEGAL_PAIRS = Arrays.deepToString(testBoard.illegalPairs);
         testMain.printTestResult("Illegal Pairs Test");
@@ -38,14 +45,15 @@ public class GameBoardTests {
     }
 
     public static void dictionaryReadTest() throws Exception {
-        List<String[]> testDictionary = IO.parseDictionary((Path.of("src/main/resources/dictionary-test.csv")), testBoard);
+        //List<String[]> testDictionary = IO.parseDictionary((Path.of("src/main/resources/dictionary-test.csv")), testBoard);
         for (int i = 0; i < 100; i++) {
-            System.out.println(Arrays.toString(testDictionary.get(i)));
+            //System.out.println(Arrays.toString(testDictionary.get(i)));
+            System.out.println(Arrays.toString(testBoard.validWords.get(i)));
         }
     }
 
     public static void eliminateWordsWithInvalidLettersTest(String word) {
-        if (IO.hasValidLetters(word, testBoard.letters)) {
+        if (IO.hasValidLetters(word, testBoard)) {
             System.out.println("ALL LETTERS VALID");
         } else {
             System.out.println("INVALID LETTERS");
