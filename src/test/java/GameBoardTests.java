@@ -1,10 +1,11 @@
 import org.opentest4j.AssertionFailedError;
 
-import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameBoardTests {
     static GameBoard testBoard;
@@ -20,43 +21,60 @@ public class GameBoardTests {
     static String EXPECTED_SIDES = "[[a, b, c], [d, e, f], [g, h, i], [j, k, l]]";
     static String EXPECTED_ILLEGAL_PAIRS = "[aa, ab, ac, ba, bb, bc, ca, cb, cc, dd, de, df, ed, ee, ef, " +
             "fd, fe, ff, gg, gh, gi, hg, hh, hi, ig, ih, ii, jj, jk, jl, kj, kk, kl, lj, lk, ll]";
+    static List<String[]> EXPECTED_FIRST_FIVE = new ArrayList<String[]>(Arrays.asList(new String[]{"Ada", "4", "1.386", "3"},
+            new String[]{"Adad", "6", "1.792", "4"}, new String[]{"Adage", "7", "1.946", "5"},
+            new String[]{"Adai, 5, 1.609, 4"}, new String[]{"Adalid, 8, 2.079, 6"}));
 
 
-    public static void sidesTest() {
+public static boolean sidesTest() {
         String ACTUAL_SIDES = Arrays.deepToString(testBoard.sides);
-        testMain.printTestResult("Sides Test");
         try {
             assertEquals(EXPECTED_SIDES, ACTUAL_SIDES);
-            System.out.print("PASS\n");
+            return true;
+            //System.out.print("PASS\n");
         } catch (AssertionFailedError e) {
-            System.out.print("FAIL\n");
+            //System.out.print("FAIL\n");
+            return false;
         }
     }
 
-    public static void illegalPairsTest() {
+    public static boolean illegalPairsTest() {
         String ACTUAL_ILLEGAL_PAIRS = Arrays.deepToString(testBoard.illegalPairs);
-        testMain.printTestResult("Illegal Pairs Test");
         try {
             assertEquals(EXPECTED_ILLEGAL_PAIRS, ACTUAL_ILLEGAL_PAIRS);
-            System.out.print("PASS\n");
+            return true;
         } catch (AssertionFailedError e) {
-            System.out.print("FAIL\n");
+            return false;
         }
     }
 
-    public static void dictionaryReadTest() throws Exception {
-        //List<String[]> testDictionary = IO.parseDictionary((Path.of("src/main/resources/dictionary-test.csv")), testBoard);
-        for (int i = 0; i < 100; i++) {
-            //System.out.println(Arrays.toString(testDictionary.get(i)));
-            System.out.println(Arrays.toString(testBoard.validWords.get(i)));
+    public static boolean dictionaryReadTest() {
+        List<String[]> ACTUAL_FIRST_FIVE = testBoard.validWords.subList(0, 5);
+        for (int i = 0; i < 5; i++) {
+            try {
+                assertArrayEquals(EXPECTED_FIRST_FIVE.get(i), ACTUAL_FIRST_FIVE.get(i));
+            } catch (Exception ignored) {
+                return false;
+            }
         }
+        return true;
     }
 
-    public static void eliminateWordsWithInvalidLettersTest(String word) {
+    public static boolean eliminateWordsWithInvalidLettersTest(String word) {
+
+            try {
+                assertTrue(IO.hasValidLetters(word, testBoard));
+                return true;
+            } catch (AssertionFailedError e) {
+                return false;
+            }
+       /*
         if (IO.hasValidLetters(word, testBoard)) {
             System.out.println("ALL LETTERS VALID");
         } else {
             System.out.println("INVALID LETTERS");
         }
+
+        */
+        }
     }
-}

@@ -19,7 +19,7 @@ public class GameBoard {
 
     // i = side number (Top-0, Right-1, Bottom-2,Left-3
     //j = letter position (clockwise)
-    public static char[][] defineSides(String letters) {
+    protected static char[][] defineSides(String letters) {
         char[] letterArray = letters.toCharArray();
         char[][] sides = new char[4][3];
         int l = 0;
