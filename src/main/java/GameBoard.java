@@ -1,25 +1,27 @@
-import java.nio.file.Path;
+import com.opencsv.CSVReader;
+
+import javax.print.attribute.standard.Sides;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class GameBoard {
 
-    String letters;
-    char[][] sides;
-    String[] illegalPairs;
-    List<String[]> validWords;
+
+    private String letters;
+    private char[][] sides;
+    private String[] illegalPairs;
+    private List<String[]> validWords;
 
     GameBoard(String letters) throws Exception {
         this.letters = letters;
-        this.sides = defineSides(letters);
-        this.illegalPairs = defineIllegalPairs(sides);
     }
 
     // i = side number (Top-0, Right-1, Bottom-2,Left-3
     //j = letter position (clockwise)
-    protected static char[][] defineSides(String letters) {
-        char[] letterArray = letters.toCharArray();
+    protected void defineSides() {
+        char[] letterArray = this.letters.toCharArray();
         char[][] sides = new char[4][3];
         int l = 0;
         for (int i = 0; i < 4; i++) {
@@ -28,14 +30,14 @@ public class GameBoard {
                 l++;
             }
         }
-        return sides;
+        this.setSides(sides);
     }
 
-    protected static String[] defineIllegalPairs(char[][] sides) {
+    protected void defineIllegalPairs() {
         int i, j, k;
         List<String> pairsList = new ArrayList<>();
         for (i = 0; i < 4; i++) {
-            char[] side = Arrays.copyOf(sides[i], 3);
+            char[] side = Arrays.copyOf(this.sides[i], 3);
             for (j = 0; j < 3; j++) {
                 for (k = 0; k < 3; k++) {
                     String pair = "".concat(String.valueOf(side[j])).concat(String.valueOf(side[k]));
@@ -45,11 +47,20 @@ public class GameBoard {
                 }
             }
         }
-        return pairsList.toArray(new String[0]);
+        this.setIllegalPairs(pairsList.toArray(new String[0]));
     }
 
-    protected static void findValidWords(Path path, GameBoard board) throws Exception {
-             IO.parseDictionary(path, board);
+    public void genValidWordsList() throws Exception {
+        List<String[]> list = new ArrayList<>();
+        try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(IO.DICTIONARY))) {
+            String[] line;
+            while ((line = csvReader.readNext()) != null) {
+                if (IO.validateWord(line[0], this)) {
+                    list.add(line);
+                }
+            }
+        }
+        this.setValidWords(list);
     }
 
     public String getLetters() {

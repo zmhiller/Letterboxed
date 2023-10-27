@@ -6,9 +6,11 @@ import java.util.List;
 
 public class IO {
 
-    public static List<String[]> parseDictionary(Path dictionary, GameBoard board) throws Exception {
+    static Path DICTIONARY = Path.of("src/main/resources/dictionary-test.csv");
+
+    public static List<String[]> genValidWordsList(GameBoard board) throws Exception {
         List<String[]> list = new ArrayList<>();
-        try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(dictionary))) {
+        try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(DICTIONARY))) {
             String[] line;
             while ((line = csvReader.readNext()) != null) {
                 if (validateWord(line[0], board)) {

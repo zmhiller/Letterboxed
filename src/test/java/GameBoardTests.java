@@ -8,16 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameBoardTests {
-    static GameBoard testBoard;
 
-    static {
-        try {
-            testBoard = new GameBoard(testMain.TEST_LETTERS);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    static GameBoard testBoard = testMain.testBoard;
     static String EXPECTED_SIDES = "[[a, b, c], [d, e, f], [g, h, i], [j, k, l]]";
     static String EXPECTED_ILLEGAL_PAIRS = "[aa, ab, ac, ba, bb, bc, ca, cb, cc, dd, de, df, ed, ee, ef, " +
             "fd, fe, ff, gg, gh, gi, hg, hh, hi, ig, ih, ii, jj, jk, jl, kj, kk, kl, lj, lk, ll]";
@@ -27,7 +19,7 @@ public class GameBoardTests {
 
 
 public static boolean sidesTest() {
-        String ACTUAL_SIDES = Arrays.deepToString(testBoard.sides);
+        String ACTUAL_SIDES = Arrays.deepToString(testBoard.getSides());
         try {
             assertEquals(EXPECTED_SIDES, ACTUAL_SIDES);
             return true;
@@ -39,7 +31,7 @@ public static boolean sidesTest() {
     }
 
     public static boolean illegalPairsTest() {
-        String ACTUAL_ILLEGAL_PAIRS = Arrays.deepToString(testBoard.illegalPairs);
+        String ACTUAL_ILLEGAL_PAIRS = Arrays.deepToString(testBoard.getIllegalPairs());
         try {
             assertEquals(EXPECTED_ILLEGAL_PAIRS, ACTUAL_ILLEGAL_PAIRS);
             return true;
@@ -49,7 +41,7 @@ public static boolean sidesTest() {
     }
 
     public static boolean dictionaryReadTest() {
-        List<String[]> ACTUAL_FIRST_FIVE = testBoard.validWords.subList(0, 5);
+        List<String[]> ACTUAL_FIRST_FIVE = testBoard.getValidWords().subList(0, 5);
         for (int i = 0; i < 5; i++) {
             try {
                 String EXPECTED = Arrays.toString(EXPECTED_FIRST_FIVE.get(i)).toLowerCase();

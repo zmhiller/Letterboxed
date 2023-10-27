@@ -1,4 +1,5 @@
 public class testMain {
+    public static GameBoard testBoard;
     static String TEST_LETTERS = "abcdefghijkl";
 
     public static void printTestResult(boolean result, String testName) {
@@ -14,6 +15,12 @@ public class testMain {
     }
 
     public static void main(String[] args) throws Exception {
+
+        testBoard = new GameBoard(TEST_LETTERS);
+        testBoard.defineSides();
+        testBoard.defineIllegalPairs();
+        testBoard.genValidWordsList();
+
         System.out.printf("\nInput String: \t%s\n", TEST_LETTERS);
         System.out.println("--------------------------------------------------");
 
