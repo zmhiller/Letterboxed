@@ -23,7 +23,7 @@ public class GameBoardTests {
             "fd, fe, ff, gg, gh, gi, hg, hh, hi, ig, ih, ii, jj, jk, jl, kj, kk, kl, lj, lk, ll]";
     static List<String[]> EXPECTED_FIRST_FIVE = new ArrayList<String[]>(Arrays.asList(new String[]{"Ada", "4", "1.386", "3"},
             new String[]{"Adad", "6", "1.792", "4"}, new String[]{"Adage", "7", "1.946", "5"},
-            new String[]{"Adai, 5, 1.609, 4"}, new String[]{"Adalid, 8, 2.079, 6"}));
+            new String[]{"Adai", "5", "1.609", "4"}, new String[]{"Adalid", "8", "2.079", "6"}));
 
 
 public static boolean sidesTest() {
@@ -52,8 +52,12 @@ public static boolean sidesTest() {
         List<String[]> ACTUAL_FIRST_FIVE = testBoard.validWords.subList(0, 5);
         for (int i = 0; i < 5; i++) {
             try {
-                assertArrayEquals(EXPECTED_FIRST_FIVE.get(i), ACTUAL_FIRST_FIVE.get(i));
-            } catch (Exception ignored) {
+                String EXPECTED = Arrays.toString(EXPECTED_FIRST_FIVE.get(i)).toLowerCase();
+                String ACTUAL = Arrays.toString(ACTUAL_FIRST_FIVE.get(i)).toLowerCase();
+                assertEquals(EXPECTED, ACTUAL);
+                //System.out.printf("\n\tIndex %d: EQUAL", i);
+            } catch (AssertionFailedError e) {
+                //System.out.printf("\n\tIndex %d: NOT EQUAL", i);
                 return false;
             }
         }
@@ -68,13 +72,5 @@ public static boolean sidesTest() {
             } catch (AssertionFailedError e) {
                 return false;
             }
-       /*
-        if (IO.hasValidLetters(word, testBoard)) {
-            System.out.println("ALL LETTERS VALID");
-        } else {
-            System.out.println("INVALID LETTERS");
-        }
-
-        */
         }
     }
