@@ -14,7 +14,6 @@ public class GameBoard {
         this.letters = letters;
         this.sides = defineSides(letters);
         this.illegalPairs = defineIllegalPairs(sides);
-        validWords = IO.parseDictionary(Path.of("src/main/resources/dictionary-test.csv"), this);
     }
 
     // i = side number (Top-0, Right-1, Bottom-2,Left-3
@@ -47,6 +46,42 @@ public class GameBoard {
             }
         }
         return pairsList.toArray(new String[0]);
+    }
+
+    protected static void findValidWords(Path path, GameBoard board) throws Exception {
+             IO.parseDictionary(path, board);
+    }
+
+    public String getLetters() {
+        return letters;
+    }
+
+    public void setLetters(String letters) {
+        this.letters = letters;
+    }
+
+    public char[][] getSides() {
+        return sides;
+    }
+
+    public void setSides(char[][] sides) {
+        this.sides = sides;
+    }
+
+    public String[] getIllegalPairs() {
+        return illegalPairs;
+    }
+
+    public void setIllegalPairs(String[] illegalPairs) {
+        this.illegalPairs = illegalPairs;
+    }
+
+    public List<String[]> getValidWords() {
+        return validWords;
+    }
+
+    public void setValidWords(List<String[]> validWords) {
+        this.validWords = validWords;
     }
 
     public static void main(String[] args) {

@@ -1,10 +1,3 @@
-import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
-
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class testMain {
     static String TEST_LETTERS = "abcdefghijkl";
 
@@ -24,7 +17,6 @@ public class testMain {
         System.out.printf("\nInput String: \t%s\n", TEST_LETTERS);
         System.out.println("--------------------------------------------------");
 
-        //GameBoardTests.sidesTest();
         printTestResult(GameBoardTests.sidesTest(), "Sides Test");
         printTestResult(GameBoardTests.illegalPairsTest(), "Illegal Pairs Test");
         printTestResult(GameBoardTests.dictionaryReadTest(), "Dictionary Read Test");

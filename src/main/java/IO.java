@@ -24,7 +24,7 @@ public class IO {
     }
 
     public static boolean hasValidLetters(String word, GameBoard board) {
-        char[] lettersArray = board.letters.toLowerCase().toCharArray();
+        char[] lettersArray = board.getLetters().toLowerCase().toCharArray();
         char[] wordArray = word.toLowerCase().toCharArray();
         int i, j;
         for (i = 0; i < wordArray.length; i++) {
@@ -40,7 +40,7 @@ public class IO {
     }
 
     public static boolean hasValidPairs(String word, GameBoard board) {
-        for (String pair : board.illegalPairs) {
+        for (String pair : board.getIllegalPairs()) {
             if (word.toLowerCase().contains(pair)) {
                 return false;
             }
