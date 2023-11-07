@@ -1,6 +1,10 @@
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class testMain {
-    public static GameBoard testBoard;
-    static String TEST_LETTERS = "abcdefghijkl";
+    static char[] TEST_LETTERS = "abcdefghijkl".toCharArray();
+    public static GameBoard testBoard = new GameBoard(TEST_LETTERS);
+    static HashMap<String, String> testWord = new HashMap<>();
 
     public static void printTestResult(boolean result, String testName) {
         int lineLength = 46;
@@ -14,20 +18,31 @@ public class testMain {
         }
     }
 
+    private static void printTestHeader(char[] letters) {
+        System.out.printf("\nInput String: \t%s\n", Arrays.toString(letters).toUpperCase());
+        System.out.println("--------------------------------------------------");
+    }
+
     public static void main(String[] args) throws Exception {
 
-        testBoard = new GameBoard(TEST_LETTERS);
         testBoard.defineSides();
         testBoard.defineIllegalPairs();
         testBoard.genValidWordsList();
 
-        System.out.printf("\nInput String: \t%s\n", TEST_LETTERS);
-        System.out.println("--------------------------------------------------");
+        testWord.put("Word", "Adage");
+        testWord.put("Base", "1.946");
+        testWord.put("Length", "5");
+        testWord.put("Unique", "Adge");
+        testWord.put("First", "A");
+        testWord.put("Last", "E");
 
+        printTestHeader(TEST_LETTERS);
         printTestResult(GameBoardTests.sidesTest(), "Sides Test");
         printTestResult(GameBoardTests.illegalPairsTest(), "Illegal Pairs Test");
         printTestResult(GameBoardTests.dictionaryReadTest(), "Dictionary Read Test");
-        printTestResult(GameBoardTests.eliminateWordsWithInvalidLettersTest("adage"), "Valid Words Test");
+        printTestResult(GameBoardTests.eliminateWordsWithInvalidLettersTest("adage", "riposte"), "Valid Words Test");
+
+        printTestResult(WordTests.wordParsingTest());
     }
 }
 

@@ -1,6 +1,5 @@
 import com.opencsv.CSVReader;
 
-import javax.print.attribute.standard.Sides;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,20 +7,20 @@ import java.util.List;
 
 public class GameBoard {
 
-
-    private String letters;
+    private final String letterString;
+    private final char[] letterArray;
     private char[][] sides;
     private String[] illegalPairs;
-    private List<String[]> validWords;
+    private List<Word> validWords;
 
-    GameBoard(String letters) throws Exception {
-        this.letters = letters;
+    GameBoard(char[] letters) {
+        this.letterString = new String(letters);
+        this.letterArray = letters;
     }
 
     // i = side number (Top-0, Right-1, Bottom-2,Left-3
     //j = letter position (clockwise)
     protected void defineSides() {
-        char[] letterArray = this.letters.toCharArray();
         char[][] sides = new char[4][3];
         int l = 0;
         for (int i = 0; i < 4; i++) {
@@ -51,24 +50,24 @@ public class GameBoard {
     }
 
     public void genValidWordsList() throws Exception {
-        List<String[]> list = new ArrayList<>();
-        try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(IO.DICTIONARY))) {
+        List<Word> list = new ArrayList<>();
+        try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(IO.TEST_DICTIONARY))) {
             String[] line;
             while ((line = csvReader.readNext()) != null) {
                 if (IO.validateWord(line[0], this)) {
-                    list.add(line);
+                    list.add(new Word(line));
                 }
             }
         }
         this.setValidWords(list);
     }
 
-    public String getLetters() {
-        return letters;
+    public char[] getLetterArray() {
+        return letterArray;
     }
 
-    public void setLetters(String letters) {
-        this.letters = letters;
+    public String getLetterString() {
+        return letterString;
     }
 
     public char[][] getSides() {
@@ -87,11 +86,11 @@ public class GameBoard {
         this.illegalPairs = illegalPairs;
     }
 
-    public List<String[]> getValidWords() {
+    public List<Word> getValidWords() {
         return validWords;
     }
 
-    public void setValidWords(List<String[]> validWords) {
+    public void setValidWords(List<Word> validWords) {
         this.validWords = validWords;
     }
 
