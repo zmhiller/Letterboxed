@@ -10,7 +10,7 @@ public class WordTests {
     static double EXPECTED_BASE_SCORE = 1.946;
     static int EXPECTED_LENGTH = 5;
 
-    public Word findValidWordEntry(String searchWord, GameBoard board) {
+    public static Word findValidWordEntry(String searchWord, GameBoard board) {
         for (Word w : board.getValidWords()) {
             if (Objects.equals(w.asString(), searchWord)) {
                 return w;
@@ -20,11 +20,12 @@ public class WordTests {
     }
 
     public static boolean wordParsingTest(GameBoard board) {
-        Word ACTUAL_WORD = board.getValidWords()
-        String ACTUAL_WORD_STRING = parsedWord.asString(), ACTUAL_UNIQUE_LETTERS = parsedWord.getUniqueLetters();
-        Double ACTUAL_BASE_SCORE = parsedWord.getBaseScore();
-        int ACTUAL_LENGTH = parsedWord.getLength();
-        char ACTUAL_FIRST = parsedWord.getFirstLetter(), ACTUAL_LAST = parsedWord.getLastLetter();
+        Word ACTUAL_WORD = findValidWordEntry(EXPECTED_WORD_STRING, board);
+        assert ACTUAL_WORD != null;
+        String ACTUAL_WORD_STRING = ACTUAL_WORD.asString(), ACTUAL_UNIQUE_LETTERS = ACTUAL_WORD.getUniqueLetters();
+        Double ACTUAL_BASE_SCORE = ACTUAL_WORD.getBaseScore();
+        int ACTUAL_LENGTH = ACTUAL_WORD.getLength();
+        char ACTUAL_FIRST = ACTUAL_WORD.getFirstLetter(), ACTUAL_LAST = ACTUAL_WORD.getLastLetter();
 
         try {
             assertEquals(EXPECTED_WORD_STRING, ACTUAL_WORD_STRING);

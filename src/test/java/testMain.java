@@ -42,7 +42,7 @@ public class testMain {
         printTestResult(GameBoardTests.dictionaryReadTest(), "Dictionary Read Test");
         printTestResult(GameBoardTests.eliminateWordsWithInvalidLettersTest("adage", "riposte"), "Valid Words Test");
 
-        printTestResult(WordTests.wordParsingTest());
+        printTestResult(WordTests.wordParsingTest(testBoard), "Word Parsing Test");
     }
 }
 
