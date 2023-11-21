@@ -7,15 +7,20 @@ import java.util.List;
 
 public class GameBoard {
 
-    private final String letterString;
-    private final char[] letterArray;
+    private String letterString;
+    private final char[] letterArray = new char[12];
+    List<Character> charList = new ArrayList<>();
     private char[][] sides;
     private String[] illegalPairs;
-    private List<Word> validWords;
+    private List<Word> validWords = new ArrayList<>();
 
-    GameBoard(char[] letters) {
-        this.letterString = new String(letters);
-        this.letterArray = letters;
+    GameBoard(String letters) {
+        this.letterString = letters.toLowerCase();
+        for (char c : this.letterString.toCharArray()) {
+            charList.add(c);
+        }
+        System.arraycopy(letters.toLowerCase().toCharArray(), 0, this.letterArray,
+                0, letters.length());
     }
 
     // i = side number (Top-0, Right-1, Bottom-2,Left-3
@@ -41,7 +46,7 @@ public class GameBoard {
                 for (k = 0; k < 3; k++) {
                     String pair = "".concat(String.valueOf(side[j])).concat(String.valueOf(side[k]));
                     if (!pairsList.contains(pair)) {
-                        pairsList.add(pair);
+                        pairsList.add(pair.toLowerCase());
                     }
                 }
             }
@@ -49,6 +54,7 @@ public class GameBoard {
         this.setIllegalPairs(pairsList.toArray(new String[0]));
     }
 
+    /*
     public void genValidWordsList() throws Exception {
         List<Word> list = new ArrayList<>();
         try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(IO.TEST_DICTIONARY))) {
@@ -61,6 +67,8 @@ public class GameBoard {
         }
         this.setValidWords(list);
     }
+
+     */
 
     public char[] getLetterArray() {
         return letterArray;
@@ -89,12 +97,28 @@ public class GameBoard {
     public List<Word> getValidWords() {
         return validWords;
     }
+/*
+    public void setValidWords(List<Word> validWords) {
+        this.validWords = validWords;
+    }
+
+ */
 
     public void setValidWords(List<Word> validWords) {
         this.validWords = validWords;
     }
 
-    public static void main(String[] args) {
+    public List<Character> getCharList() {
+        return charList;
     }
+
+    public void setCharList(List<Character> charList) {
+        this.charList = charList;
+    }
+
+    public void addValidWord(Word word) {
+        this.validWords.add((word));
+    }
+
 }
 

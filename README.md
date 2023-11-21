@@ -37,10 +37,10 @@ Letterboxed
 - Created GameBoardTests class, w/ tests for:
 	- Sides
     - Illegal pairs 
-    - Dictionary read 
+    - Parsers read 
     - Valid word parsing
 - testMain now calls individual test methods from other Tests classes (e.g. GameBoardTests)
 - defineSides working (parse String `letters` into sides `[1/2/3] [4/5/6] [7/8/9] [10/11/12]`)
 - defineIllegalPairs working (finds all possible pairings of letters on the same side of the board)
-- Dictionary reader working
-- Dictionary parsing for valid words (ONLY valid letters, NO illegal pairs)
+- Parsers reader working
+- Parsers parsing for valid words (ONLY valid letters, NO illegal pairs)
