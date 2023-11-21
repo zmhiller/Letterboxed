@@ -1,13 +1,10 @@
-import com.opencsv.CSVReader;
-
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class GameBoard {
 
-    private String letterString;
+    private final String letterString;
     private final char[] letterArray = new char[12];
     List<Character> charList = new ArrayList<>();
     private char[][] sides;
@@ -53,22 +50,6 @@ public class GameBoard {
         }
         this.setIllegalPairs(pairsList.toArray(new String[0]));
     }
-
-    /*
-    public void genValidWordsList() throws Exception {
-        List<Word> list = new ArrayList<>();
-        try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(IO.TEST_DICTIONARY))) {
-            String[] line;
-            while ((line = csvReader.readNext()) != null) {
-                if (IO.validateWord(line[0], this)) {
-                    list.add(new Word(line));
-                }
-            }
-        }
-        this.setValidWords(list);
-    }
-
-     */
 
     public char[] getLetterArray() {
         return letterArray;

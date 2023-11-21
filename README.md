@@ -1,46 +1,73 @@
 Letterboxed
 ======
 
-## Progress
+## Done
 
-- ### GameBoard 
-	- [x] Define Sides
-	- [x] Define Illegal Pairs (i.e. pairs of letters on the same side, which can never be used)
-	- [x] Define Valid Words List (parse `DICTIONARY` for all words which DO contain ONLY valid letters (i.e. letters on the board), and which DO NOT contain illegal pairs)
+#### Done... like actually ***done*** done <sup><sup><sup>_I swear_</sup></sup></sup>
 
-- ### I/O
-	- [x] Import dictionary.csv (word, raw base score, normalized base score, length)
-    - [ ] User input & selection #In_Progress
-      - [ ] Letters input
-      - [ ] Primary / Secondary scoring preference (presets)
-      - [ ] User-adjustable weighting & scaling
 
-- ### Wordlist	
-	- ###### Scoring
-		- [ ] Adjustable weighting system
-			- Word length (shortest <> longest)
-			- Letters used (least <> most)
-			- Number of words (least <> most)
-	- ###### Output
-		- [ ] Sort by weighted score
-		- [ ] Output formatting (table)
+#### Working
 
-- ### Game Logic
-  - [ ] Start / End / Reset game
-  - 
-- ### GUI
-	- [ ] Coming Soon™
+- Building GameBoard sides & illegal pairs list from initial input `(needs cleanup)`
+- Dictionary parsing
+- Word validation based on valid letters & illegal pairs
+- `Word` object construction `(needs cleanup)`
+- List of valid words for game's letters w/ parameters for length, unique letters,\
+a base (normalized) score, and an adjusted score based on weighted multipliers of the base
+
+
+### Working (kinda...)
+
+
+
+#### In Progress
+
+- New Scoring System
+  - [x] Log-normalized scores as base
+  - [ ] Weighted multipliers based on user preference (longest words, shortest words,\
+  most letters, fewest letters, etc.) 
+    - Re-normalize final scores before sorting (?)
+- [ ] Clean up GameBoard class & separate some functionality
+
+
+### To-Do
+- [ ] Matching class (TBD) to build full solutions from list of valid words
+- [ ] Sorting functionality based on user preference
+- [ ] Adjustable weighting system
+  - word length (shortest <> longest)
+  - Letters used (least <> most)
+  - Number of words (least <> most)
+- [ ] Game Logic
+- [ ] Coming Soon™
 
 
 
 ## Changelog
-- Created GameBoardTests class, w/ tests for:
-	- Sides
-    - Illegal pairs 
-    - Parsers read 
-    - Valid word parsing
-- testMain now calls individual test methods from other Tests classes (e.g. GameBoardTests)
-- defineSides working (parse String `letters` into sides `[1/2/3] [4/5/6] [7/8/9] [10/11/12]`)
-- defineIllegalPairs working (finds all possible pairings of letters on the same side of the board)
-- Parsers reader working
-- Parsers parsing for valid words (ONLY valid letters, NO illegal pairs)
+
+#### v0.0.2
+- Learned that JUnit's `TestSuite` is a thing - testing is much easier now <sub>but soo much wasted time...</sub>
+  - *GameBoard*
+   	- Building sides from input correctly
+    - Identifying illegal pairs correctly
+  - *Parsing*
+    - Reading `Dictionary` correctly
+    - Validating words correctly
+    - Building `Word` objects correctly
+    - Building valid words lists correctly
+- `Dictionary` now includes base (log-normalized) scores & unique letter counts for each word
+
+---
+
+#### v0.0.1
+- ~~Implemented custom Tests~~
+  - ~~GameBoardTests class, w/ tests for:~~
+  - ~~Sides~~
+  - ~~Illegal pairs~~ 
+  - ~~Parsers read~~ 
+  - ~~Valid word parsing~~
+  - ~~testMain now calls individual test methods from other Tests classes (e.g. GameBoardTests)~~
+
+- Defining sides working (ex: `String "abcdefghijkl"` ->  `char[][] {[a/b/c][d/e/f][g/h/i][j/k/l]}`)
+- Getting illegal pairs working (finds all possible pairings of letters on the same side of the board)
+- Dictionary parser working
+- Word parsers working (finding valid words & building `Word` objects)

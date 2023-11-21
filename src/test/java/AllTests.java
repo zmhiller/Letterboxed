@@ -6,7 +6,7 @@ public class AllTests {
 
     static final String LETTERS = TEST_ITEMS.LETTERS;
     static final Path DICTIONARY = TEST_ITEMS.DICTIONARY;
-    public static GameBoard testBoard = new GameBoard(LETTERS);
+    public static final GameBoard testBoard = new GameBoard(LETTERS);
 
     public static Test suite() throws Exception {
         testBoard.defineSides();
@@ -15,8 +15,8 @@ public class AllTests {
         TestSuite testSuite = new TestSuite("Letterboxed Test Suite");
 
         //$JUnit-BEGIN$
-        testSuite.addTestSuite(TestGameBoards.class);
-        testSuite.addTestSuite(TestParsers.class);
+        testSuite.addTestSuite(GameBoardTests.class);
+        testSuite.addTestSuite(ParserTests.class);
         //$JUnit-END$
 
         return testSuite;
