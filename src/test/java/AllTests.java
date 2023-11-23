@@ -22,3 +22,4 @@ public class AllTests {
         return testSuite;
     }
 }
+

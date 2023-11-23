@@ -9,27 +9,23 @@ public class Word {
     private double adjustedScore;
     private final int uniqueLetterCount;
     private final char firstLetter, lastLetter;
-    private final List<Character> uniqueLetterList = new ArrayList<>();
+    private final char[] uniqueLetterList;
 
     Word(String[] dictionaryLine) {
         this.word = dictionaryLine[0];
+        final int rawScore = Integer.parseInt(dictionaryLine[1]);
         this.baseScore = this.adjustedScore = Double.parseDouble(dictionaryLine[2]);
-        this.uniqueLetterCount = Integer.parseInt(dictionaryLine[4]);
-        //setUniqueLetterList(this.toCharArray());
+        this.uniqueLetterCount = Integer.parseInt(dictionaryLine[3]);
+        this.uniqueLetterList = dictionaryLine[4].toCharArray();
         this.firstLetter = word.charAt(0);
         this.lastLetter = word.charAt(word.length() - 1);
-
-        for (char c : word.toCharArray())
-            if (!this.uniqueLetterList.contains(c)) {
-                this.uniqueLetterList.add(c);
-            }
     }
 
-    Word(String word, double score, int unique) {
+    Word(String word, double score, int uniqueCount, char[] uniqueList) {
         this.word = word;
         this.baseScore = this.adjustedScore = score;
-        this.uniqueLetterCount = unique;
-        setUniqueLetterList(this.toCharArray());
+        this.uniqueLetterCount = uniqueCount;
+        this.uniqueLetterList = uniqueList;
         this.firstLetter = word.charAt(0);
         this.lastLetter = word.charAt(word.length() - 1);
     }
@@ -56,7 +52,7 @@ public class Word {
 
     public int getUniqueLetterCount() { return uniqueLetterCount; }
 
-    public List<Character> getUniqueLetterList() { return uniqueLetterList; }
+    public char[] getUniqueLetterList() { return uniqueLetterList; }
 
     public double getAdjustedScore() { return adjustedScore; }
 
@@ -65,13 +61,6 @@ public class Word {
     public char getFirstLetter() { return firstLetter; }
 
     public char getLastLetter() { return lastLetter; }
-
-    public void setUniqueLetterList(char[] chars) {
-        for (char c : chars)
-            if (!this.uniqueLetterList.contains(c)) {
-                this.uniqueLetterList.add(c);
-            }
-    }
 
     public void setAdjustedScore(double adjustedScore) {
         this.adjustedScore = adjustedScore;

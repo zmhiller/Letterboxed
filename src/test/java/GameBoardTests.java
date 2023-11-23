@@ -1,5 +1,4 @@
 import junit.framework.TestCase;
-
 import java.util.Arrays;
 
 public class GameBoardTests extends TestCase {
