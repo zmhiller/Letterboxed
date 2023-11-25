@@ -2,11 +2,10 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 public class AllTests {
-
-    static final String LETTERS = TEST_ITEMS.LETTERS;
-    public static final GameBoard testBoard = new GameBoard(LETTERS);
+    public static GameBoard testBoard;
 
     public static Test suite() throws Exception {
+        testBoard = new GameBoard(TEST_ITEMS.LETTERS);
         testBoard.defineSides();
         testBoard.defineIllegalPairs();
         Parsers.findValidWords(testBoard);
