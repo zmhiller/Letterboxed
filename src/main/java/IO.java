@@ -14,7 +14,7 @@ public class IO {
     public static boolean hasValidLetters(String word, GameBoard board) {
         char[] wordArray = word.toLowerCase().toCharArray();
         List<Character> boardList = new ArrayList<>(), wordList = new ArrayList<>();
-        for (char c : board.getLetterArray()) {
+        for (char c : board.toCharArray()) {
             boardList.add(c);
         }
         for (char c : wordArray) {

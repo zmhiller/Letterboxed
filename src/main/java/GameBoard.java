@@ -1,21 +1,20 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class GameBoard {
 
     private final String letterString;
-    private final char[] letterArray = new char[12];
+    private final char[] letterArray;
     List<Character> charList = new ArrayList<>();
     private char[][] sides;
     private String[] illegalPairs;
-    private List<Word> validWords = new ArrayList<>();
+    private final List<Word> validWords = new ArrayList<>();
 
     GameBoard(String letters) {
         this.letterString = letters.toLowerCase();
         for (char c : this.letterString.toCharArray()) {
-            charList.add(c);
+            this.charList.add(c);
         }
+        letterArray = letterString.toCharArray();
         System.arraycopy(letters.toLowerCase().toCharArray(), 0, this.letterArray,
                 0, letters.length());
     }
@@ -31,7 +30,7 @@ public class GameBoard {
                 l++;
             }
         }
-        this.setSides(sides);
+        this.sides = sides;
     }
 
     protected void defineIllegalPairs() {
@@ -48,14 +47,17 @@ public class GameBoard {
                 }
             }
         }
-        this.setIllegalPairs(pairsList.toArray(new String[0]));
+        this.illegalPairs = pairsList.toArray(new String[0]);
     }
 
-    public char[] getLetterArray() {
-        return letterArray;
-    }
+    public char[] toCharArray() { return letterArray; }
 
-    public String getLetterString() {
+    public List<Character> getCharList() {
+        return charList;
+
+    }
+    @Override
+    public String toString() {
         return letterString;
     }
 
@@ -63,43 +65,18 @@ public class GameBoard {
         return sides;
     }
 
-    public void setSides(char[][] sides) {
-        this.sides = sides;
-    }
-
     public String[] getIllegalPairs() {
         return illegalPairs;
-    }
-
-    public void setIllegalPairs(String[] illegalPairs) {
-        this.illegalPairs = illegalPairs;
     }
 
     public List<Word> getValidWords() {
         return validWords;
     }
-/*
-    public void setValidWords(List<Word> validWords) {
-        this.validWords = validWords;
-    }
-
- */
-
-    public void setValidWords(List<Word> validWords) {
-        this.validWords = validWords;
-    }
-
-    public List<Character> getCharList() {
-        return charList;
-    }
-
-    public void setCharList(List<Character> charList) {
-        this.charList = charList;
-    }
 
     public void addValidWord(Word word) {
         this.validWords.add((word));
     }
+
 
 }
 

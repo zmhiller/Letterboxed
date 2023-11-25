@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Word {
@@ -13,19 +12,9 @@ public class Word {
 
     Word(String[] dictionaryLine) {
         this.word = dictionaryLine[0];
-        final int rawScore = Integer.parseInt(dictionaryLine[1]);
         this.baseScore = this.adjustedScore = Double.parseDouble(dictionaryLine[2]);
         this.uniqueLetterCount = Integer.parseInt(dictionaryLine[3]);
         this.uniqueLetterList = dictionaryLine[4].toCharArray();
-        this.firstLetter = word.charAt(0);
-        this.lastLetter = word.charAt(word.length() - 1);
-    }
-
-    Word(String word, double score, int uniqueCount, char[] uniqueList) {
-        this.word = word;
-        this.baseScore = this.adjustedScore = score;
-        this.uniqueLetterCount = uniqueCount;
-        this.uniqueLetterList = uniqueList;
         this.firstLetter = word.charAt(0);
         this.lastLetter = word.charAt(word.length() - 1);
     }
@@ -34,13 +23,15 @@ public class Word {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Word word = (Word) o;
-        return Double.compare(baseScore, word.baseScore) == 0 && Double.compare(adjustedScore, word.adjustedScore) == 0 && uniqueLetterCount == word.uniqueLetterCount && firstLetter == word.firstLetter && lastLetter == word.lastLetter && Objects.equals(this.word, word.word) && Objects.equals(uniqueLetterList, word.uniqueLetterList);
+        Word word1 = (Word) o;
+        return Double.compare(baseScore, word1.baseScore) == 0 && Double.compare(adjustedScore, word1.adjustedScore) == 0 && uniqueLetterCount == word1.uniqueLetterCount && firstLetter == word1.firstLetter && lastLetter == word1.lastLetter && Objects.equals(word, word1.word) && Arrays.equals(uniqueLetterList, word1.uniqueLetterList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(word, baseScore, adjustedScore, uniqueLetterCount, firstLetter, lastLetter, uniqueLetterList);
+        int result = Objects.hash(word, baseScore, adjustedScore, uniqueLetterCount, firstLetter, lastLetter);
+        result = 31 * result + Arrays.hashCode(uniqueLetterList);
+        return result;
     }
 
     @Override
@@ -64,6 +55,11 @@ public class Word {
 
     public void setAdjustedScore(double adjustedScore) {
         this.adjustedScore = adjustedScore;
+    }
+
+    public void print() {
+        System.out.printf("Word: %s\nBase Score: %f\nUnique Count: %d\nUnique List: %s\n",
+                this.word, this.getBaseScore(), this.getUniqueLetterCount(), Arrays.toString(this.getUniqueLetterList()));
     }
 
 }
