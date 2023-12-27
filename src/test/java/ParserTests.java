@@ -7,7 +7,7 @@ public class ParserTests extends TestCase {
 
     static final GameBoard testBoard = AllTests.testBoard;
 
-    public void testDictionaryParser() throws Exception {
+    public void testDictionaryParser() {
         List<String> EXPECTED = TEST_ITEMS.FIRST_FIVE;
         List<String> ACTUAL = new ArrayList<>();
         for (Word word : testBoard.getValidWords().subList(0, 5)) {

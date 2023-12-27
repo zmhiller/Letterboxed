@@ -24,7 +24,10 @@ public class Word {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Word word1 = (Word) o;
-        return Double.compare(baseScore, word1.baseScore) == 0 && Double.compare(adjustedScore, word1.adjustedScore) == 0 && uniqueLetterCount == word1.uniqueLetterCount && firstLetter == word1.firstLetter && lastLetter == word1.lastLetter && Objects.equals(word, word1.word) && Arrays.equals(uniqueLetterList, word1.uniqueLetterList);
+        return Double.compare(baseScore, word1.baseScore) == 0 && Double.compare(adjustedScore, word1.adjustedScore) == 0
+                && uniqueLetterCount == word1.uniqueLetterCount && firstLetter == word1.firstLetter &&
+                lastLetter == word1.lastLetter && Objects.equals(word, word1.word) &&
+                Arrays.equals(uniqueLetterList, word1.uniqueLetterList);
     }
 
     @Override

@@ -1,3 +1,4 @@
-public class Scoring {
+public interface Scoring {
 
+    void applyWeights(Word word, double[] weights);
 }

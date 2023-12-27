@@ -9,6 +9,8 @@ public class TEST_ITEMS {
             "jl", "kj", "kk", "kl", "lj", "lk", "ll"});
     static final List<String> FIRST_FIVE = Arrays.asList("Abd", "Abdal", "Abdali", "Abdiel", "Abe");
     static final Word PARSED_WORD = new Word(new String[]{"Abdali", "9", "2.197", "5", "abdli"});
+    //length, unique
+    static final double[] TEST_WEIGHTS = new double[]{0.5, 2.0};
 
 
 }

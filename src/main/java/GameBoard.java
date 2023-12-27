@@ -1,64 +1,29 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class GameBoard {
 
-    private final String letterString;
-    private final char[] letterArray;
-    List<Character> charList = new ArrayList<>();
-    private char[][] sides;
-    private String[] illegalPairs;
+    final List<Character> charList = new ArrayList<>();
+    private final char[][] sides;
+    private final String[] illegalPairs;
     private final List<Word> validWords = new ArrayList<>();
 
-    GameBoard(String letters) {
-        this.letterString = letters.toLowerCase();
-        for (char c : this.letterString.toCharArray()) {
+    GameBoard(@NotNull String letters) {
+        for (char c : letters.toLowerCase().toCharArray()) {
             this.charList.add(c);
         }
-        letterArray = letterString.toCharArray();
-        System.arraycopy(letters.toLowerCase().toCharArray(), 0, this.letterArray,
-                0, letters.length());
+        this.sides = Parsers.parseSides(this);
+        this.illegalPairs = Parsers.parseIllegalPairs(this);
     }
-
-    // i = side number (Top-0, Right-1, Bottom-2,Left-3
-    //j = letter position (clockwise)
-    protected void defineSides() {
-        char[][] sides = new char[4][3];
-        int l = 0;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 3; j++) {
-                sides[i][j] = letterArray[l];
-                l++;
-            }
-        }
-        this.sides = sides;
-    }
-
-    protected void defineIllegalPairs() {
-        int i, j, k;
-        List<String> pairsList = new ArrayList<>();
-        for (i = 0; i < 4; i++) {
-            char[] side = Arrays.copyOf(this.sides[i], 3);
-            for (j = 0; j < 3; j++) {
-                for (k = 0; k < 3; k++) {
-                    String pair = "".concat(String.valueOf(side[j])).concat(String.valueOf(side[k]));
-                    if (!pairsList.contains(pair)) {
-                        pairsList.add(pair.toLowerCase());
-                    }
-                }
-            }
-        }
-        this.illegalPairs = pairsList.toArray(new String[0]);
-    }
-
-    public char[] toCharArray() { return letterArray; }
 
     public List<Character> getCharList() {
         return charList;
-
     }
+
     @Override
     public String toString() {
-        return letterString;
+        return charList.toString();
     }
 
     public char[][] getSides() {
