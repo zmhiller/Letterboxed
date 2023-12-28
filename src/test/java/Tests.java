@@ -9,4 +9,8 @@ public class Tests {
         testSuite.addTestSuite(DictionariesTests.class);
         return testSuite;
     }
+
+    public static void printTestOutput(String test, String expected, String actual) {
+        System.out.println(test + " Test Content\nExpected: " + expected + "\nActual: " + actual);
+    }
 }
