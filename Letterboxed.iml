@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/src/test/java/old" />
       <excludeFolder url="file://$MODULE_DIR$/src/test/old" />
       <excludeFolder url="file://$MODULE_DIR$/src/test/resources/old" />
+      <excludeFolder url="file://$MODULE_DIR$/excluded" />
     </content>
   </component>
 </module>

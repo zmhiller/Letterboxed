@@ -10,9 +10,11 @@ public class Game {
     private HashMap<Character, List<Word>> dictionaries = new HashMap<>(12);
     private String[][] solutions;
     private char[][] sides = new char[4][3];
+    private char[] chars;
 
     // New game constructor; takes input string of letters & finds list of valid v2Words
     public Game(@NotNull String letters) {
+        this.chars = letters.toLowerCase().toCharArray();
         for (char c : letters.toLowerCase().toCharArray()) {
             this.charList.add(c);
         }
@@ -28,6 +30,10 @@ public class Game {
 
     public List<Character> getCharList() {
         return charList;
+    }
+
+    public char[] getChars() {
+        return chars;
     }
 
     public String[] getIllegalPairs() {
