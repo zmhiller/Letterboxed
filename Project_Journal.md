@@ -1,7 +1,7 @@
 # Letterboxed
 
 ## Notes
-- Replaced old dictionary
+- ~~Replaced old dictionary~~ 12/28/23 Separated dictionaries by first letter<br>(If Q isn't a valid letter, why process any words that start with Q?)
   - includes raw scores, base (normalized) scores, and unique letter counts \
   (no need to run those calculations for *every* valid word *every* time the program runs)
   - uses log-normalized scores instead of bare Scrabble scores
@@ -39,3 +39,6 @@ a base (normalized) score, and an adjusted score based on weighted multipliers o
 - [ ] Matching class (TBD) to build full solutions from list of valid words
 - [ ] Sorting functionality based on user preference
   
+Full - 286408
+
+A 
