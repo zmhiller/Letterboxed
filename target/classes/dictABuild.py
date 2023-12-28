@@ -1,8 +1,8 @@
 import csv
 
-fullDict = 'dictionaries/dictA.csv'
+fullDict = 'dictionaries/dictK.csv'
 newDict = []
-testLetters = ['a','b','c','d','e','f','g','h','i','j','k','l']
+testLetters = 'abcdefghijkl'
 testIllegalPairs = ["aa", "ab", "ac", "ba", "bb", "bc", "ca", "cb", "cc", "dd", "de", "df",
             "ed", "ee", "ef", "fd", "fe", "ff", "gg", "gh", "gi", "hg", "hh", "hi", "ig", "ih", "ii", "jj", "jk",
             "jl", "kj", "kk", "kl", "lj", "lk", "ll"]
@@ -15,17 +15,20 @@ with open(fullDict,  newline="") as full:
             uniqueLetters = row['Unique Letters']
             wordPairs = []
             for l in uniqueLetters:
-                if word.find(l) != -1:
+                if l not in testLetters:
                     break
+            for char1 in word:
+                for char2 in word:
+                    wordPairs.append(char1 + char2)
             for pair in testIllegalPairs:
-                if word.lower().find(pair) == -1:
+                if pair in wordPairs:
                     break
             newDict.append(row)
 
         print(len(newDict))
         print(newDict[100])
 
-with open('dictionaries/testDictA.csv', 'w', newline='') as new:
+with open('dictionaries/testDictK.csv', 'w', newline='') as new:
     writer = csv.DictWriter(new, fieldnames=fields, delimiter=",")
     writer.writeheader()
     for entry in newDict:

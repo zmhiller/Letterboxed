@@ -34,11 +34,15 @@ public class Parsing {
     public static boolean validateWord(String word, Game game) {
         //Check for illegal letters
         for (char c : word.toLowerCase().toCharArray()) {
-            return !game.getCharList().contains(c);
+            if (!game.getCharList().contains(c)) {
+                return false;
+            }
         }
         //Check for illegal pairs
         for (String pair : game.getIllegalPairs()) {
-            return word.contains(pair.toLowerCase());
+            if (word.contains(pair.toLowerCase())) {
+                return false;
+            }
         }
         return true;
     }

@@ -11,7 +11,7 @@ public class Word {
     private int uniqueLetterCount;
 
     public Word(String[] dictLine) {
-        this.word = dictLine[0].toLowerCase();
+        this.word = dictLine[0];
         this.baseScore = Double.parseDouble(dictLine[1]);
         this.adjustedScore = this.baseScore;
         this.uniqueLetterCount = Integer.parseInt(dictLine[2]);
@@ -96,5 +96,10 @@ public class Word {
 
     public static int length() {
         return length;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s, %.3f, %d, %s]", this.word, this.baseScore, this.uniqueLetterCount, this.uniqueLetters);
     }
 }

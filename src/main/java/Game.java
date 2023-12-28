@@ -42,6 +42,10 @@ public class Game {
         return dictionaries;
     }
 
+    List<Word> getDictionary(char c) {
+        return this.dictionaries.get(c);
+    }
+
     public void addDictionary(char c, List<Word> dictionary) {
         this.dictionaries.put(c, dictionary);
     }
