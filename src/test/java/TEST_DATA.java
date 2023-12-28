@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class TEST_DATA {
 
+    static final String TEST_LETTERS = "abcdefghijkl";
     static final String[][] DICT_A_FIRST_FIVE = getDictAFirstFive();
 
 

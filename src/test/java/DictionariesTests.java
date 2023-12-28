@@ -1,5 +1,5 @@
 import junit.framework.TestCase;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +14,13 @@ public class DictionariesTests extends TestCase {
              lines[i] = testRead.get(i);
         }
         String actual = Arrays.deepToString(lines);
+
+        assertEquals(expected, actual);
+    }
+
+    public void testDictionariesList() {
+        String expected = Arrays.toString(new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"});
+        String actual = Arrays.toString(Dictionaries.buildDictionaries(TEST_DATA.TEST_LETTERS).keySet().toArray(new String[0]));
 
         assertEquals(expected, actual);
     }

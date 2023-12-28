@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Dictionaries {
@@ -24,5 +24,16 @@ public class Dictionaries {
         }
 
         return dictionary;
+    }
+
+    public static HashMap<String, List<String[]>> buildDictionaries(String letters) {
+        HashMap<String, List<String[]>> dictionaries = new HashMap<>();
+
+        for (char c : letters.toCharArray()) {
+            String key = String.valueOf(c).toUpperCase();
+            dictionaries.put(key, readDictionary(String.format("dict%s.csv", key)));
+        }
+
+        return dictionaries;
     }
 }
