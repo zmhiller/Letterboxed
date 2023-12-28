@@ -9,7 +9,7 @@ public class v2Tests {
         testGame = new Game(v2TEST_ITEMS.LETTERS);
         TestSuite testSuite = new TestSuite("Letterboxed Test Suite");
         //testSuite.addTestSuite(v2READ_TESTS.class);
-        testSuite.addTestSuite(v2PARSING_TESTS.class);
+        testSuite.addTestSuite(PARSING_TESTS.class);
         //testSuite.addTestSuite(v2WORD_TESTS.class);
         //testSuite.addTestSuite(v2SOLUTION_TESTS.class);
 

@@ -7,5 +7,6 @@ public class v2TEST_ITEMS {
             "ed", "ee", "ef", "fd", "fe", "ff", "gg", "gh", "gi", "hg", "hh", "hi", "ig", "ih", "ii", "jj", "jk",
             "jl", "kj", "kk", "kl", "lj", "lk", "ll"});
     static final List<String> FIRST_FIVE = Arrays.asList("Abd", "Abdal", "Abdali", "Abdiel", "Abe");
-    static final v2Word PARSED_WORD = new v2Word(new String[]{"Abdali", "2.197", "5", "abdli"});
+    static final Word PARSED_WORD = new Word(new String[]{"Abdali", "2.197", "5", "abdli"});
+    static final String[] DICTIONARY_MAP = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"};
 }

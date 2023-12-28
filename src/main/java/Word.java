@@ -1,68 +1,100 @@
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 public class Word {
 
-    private final String word;
-    private final double baseScore;
-    private double adjustedScore;
-    private final int uniqueLetterCount;
-    private final char firstLetter, lastLetter;
-    private final char[] uniqueLetterList;
+    public String word;
+    private final Double baseScore, adjustedScore;
+    private List<Character> uniqueLetters = new ArrayList<>();
+    private static int length;
+    private int uniqueLetterCount;
 
-    Word(String[] dictionaryLine) {
-        this.word = dictionaryLine[0];
-        this.baseScore = this.adjustedScore = Double.parseDouble(dictionaryLine[2]);
-        this.uniqueLetterCount = Integer.parseInt(dictionaryLine[3]);
-        this.uniqueLetterList = dictionaryLine[4].toCharArray();
-        this.firstLetter = word.charAt(0);
-        this.lastLetter = word.charAt(word.length() - 1);
+    public Word(String[] dictLine) {
+        this.word = dictLine[0].toLowerCase();
+        this.baseScore = Double.parseDouble(dictLine[1]);
+        this.adjustedScore = this.baseScore;
+        this.uniqueLetterCount = Integer.parseInt(dictLine[2]);
+
+        for (char c : dictLine[3].toLowerCase().toCharArray()) {
+            this.uniqueLetters.add(c);
+        }
+
+        length = word.length();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Word word1 = (Word) o;
-        return Double.compare(baseScore, word1.baseScore) == 0 && Double.compare(adjustedScore, word1.adjustedScore) == 0
-                && uniqueLetterCount == word1.uniqueLetterCount && firstLetter == word1.firstLetter &&
-                lastLetter == word1.lastLetter && Objects.equals(word, word1.word) &&
-                Arrays.equals(uniqueLetterList, word1.uniqueLetterList);
+    static ListIterator<Word> validWordIterator = new ListIterator<Word>() {
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public Word next() {
+            return null;
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return false;
+        }
+
+        @Override
+        public Word previous() {
+            return null;
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+            return 0;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public void set(Word word) {
+
+        }
+
+        @Override
+        public void add(Word word) {
+
+        }
+    };
+
+    public Double getBaseScore() {
+        return baseScore;
     }
 
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(word, baseScore, adjustedScore, uniqueLetterCount, firstLetter, lastLetter);
-        result = 31 * result + Arrays.hashCode(uniqueLetterList);
-        return result;
+    public Double getAdjustedScore() {
+        return adjustedScore;
     }
 
-    @Override
-    public String toString() { return word; }
-
-    public char[] toCharArray() { return word.toLowerCase().toCharArray(); }
-
-    public double getBaseScore() { return baseScore; }
-
-    public int getUniqueLetterCount() { return uniqueLetterCount; }
-
-    public char[] getUniqueLetterList() { return uniqueLetterList; }
-
-    public double getAdjustedScore() { return adjustedScore; }
-
-    public int length() { return word.length(); }
-
-    public char getFirstLetter() { return firstLetter; }
-
-    public char getLastLetter() { return lastLetter; }
-
-    public void setAdjustedScore(double adjustedScore) {
-        this.adjustedScore = adjustedScore;
+    public List<Character> getUniqueLetters() {
+        return uniqueLetters;
     }
 
-    public void print() {
-        System.out.printf("Word: %s\nBase Score: %f\nUnique Count: %d\nUnique List: %s\n",
-                this.word, this.getBaseScore(), this.getUniqueLetterCount(), Arrays.toString(this.getUniqueLetterList()));
+    public void setUniqueLetters(List<Character> uniqueLetters) {
+        this.uniqueLetters = uniqueLetters;
     }
 
+    public int getUniqueLetterCount() {
+        return uniqueLetterCount;
+    }
+
+    public void setUniqueLetterCount(int uniqueLetterCount) {
+        this.uniqueLetterCount = uniqueLetterCount;
+    }
+
+    public static int length() {
+        return length;
+    }
 }
