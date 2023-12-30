@@ -18,5 +18,33 @@ public class Parsing {
         return true;
     }
 
+    public  static boolean noInvalidLetters(Word word, String validLetters) {
+        String invalidLetters = "abcdefghijklmnopqrstuvwxyz";
+
+        for (char c : validLetters.toCharArray()) {
+            invalidLetters = invalidLetters.replace(String.valueOf(c), "");
+        }
+
+        char[] wordLetters = word.getLetters();
+        for (char wordLetter : wordLetters) {
+            for (char invalidLetter : invalidLetters.toCharArray()) {
+                if (Objects.equals(wordLetter, invalidLetter)) {
+                    return false;
+                }
+        }
+        }
+
+        return true;
+    }
+
+    public static String getInvalidLetters(String validLetters) {
+        String invalidLetters = "abcdefghijklmnopqrstuvwxyz";
+
+        for (char c : validLetters.toCharArray()) {
+            invalidLetters = invalidLetters.replace(String.valueOf(c), "");
+        }
+
+        return invalidLetters;
+    }
 
 }
