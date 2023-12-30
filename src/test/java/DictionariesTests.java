@@ -39,7 +39,7 @@ public class DictionariesTests extends TestCase {
         }
         String actual = Arrays.deepToString(lines);
 
-        Tests.printTestOutput("Dictionary List Read (No Parsing)", expected, actual);
+        Tests.printTestOutput("Dictionary List Read (No Parsing.java)", expected, actual);
         assertEquals(expected, actual);
     }
 }

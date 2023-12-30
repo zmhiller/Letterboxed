@@ -7,10 +7,12 @@ public class Tests {
         TestSuite testSuite = new TestSuite("Letterboxed Test Suite");
 
         testSuite.addTestSuite(DictionariesTests.class);
+        testSuite.addTestSuite(ParsingTests.class);
+        testSuite.addTestSuite(WordTests.class);
         return testSuite;
     }
 
     public static void printTestOutput(String test, String expected, String actual) {
-        System.out.println(test + " Test Content\nExpected: " + expected + "\nActual: " + actual);
+        System.out.println(test + " Test\nExpected: " + expected + "\nActual: " + actual);
     }
 }
