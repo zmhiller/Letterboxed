@@ -19,16 +19,7 @@ public class Word {
         this.uniqueLetterCount = this.uniqueLetters.size();
     }
 
-    public List<String> getWordPairs() {
-        List<String> wordPairs = new ArrayList<>();
 
-        for (int i = 0; i < this.length - 1; i++) {
-            String pair = String.valueOf(this.letters[i]) + this.letters[i + 1];
-            wordPairs.add(pair);
-        }
-
-        return wordPairs;
-    }
 
     private void listUniqueLetters() {
         for (char c : this.letters) {
