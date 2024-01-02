@@ -53,6 +53,14 @@ public class Word {
         return length;
     }
 
+    public double getAdjustedScore() {
+        return adjustedScore;
+    }
+
+    public void setAdjustedScore(double adjustedScore) {
+        this.adjustedScore = adjustedScore;
+    }
+
     public String toString() {
         //String letters = this.uniqueLetters.toString();
         return String.format("\n'%s'\n\tBase Score: %.3f\n\tAdj. Score: %.3f\n\tUnique Letters (%d): %s",

@@ -1,45 +1,34 @@
 import junit.framework.TestCase;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class DictionariesTests extends TestCase {
 
-    public void testReadDictionary() {
-        String expected = Arrays.deepToString(TEST_DATA.DICT_A_FIRST_FIVE);
+    static final HashMap<String, List<Word>> DICTIONARIES = Dictionaries.buildDictionaries(TEST_DATA.TEST_LETTERS,
+            TEST_DATA.INVALID_PAIRS);
 
-        List<String[]> testRead = Dictionaries.readDictionary("dictA.csv", TEST_DATA.TEST_LETTERS, TEST_DATA.INVALID_PAIRS);
-        String[][] lines = new String[5][];
-        for (int i = 0; i < 5; i++) {
-             lines[i] = testRead.get(i);
-        }
-        String actual = Arrays.deepToString(lines);
+    public static String getDictionaryContent(String letter) {
+        List<Word> dict = DICTIONARIES.get(letter);
+        String first = dict.get(0).getWord();
+        String last = dict.get(dict.size() - 1).getWord();
+        String size = String.valueOf(dict.size());
 
-        Tests.printTestOutput("Full Dictionary Read", expected, actual);
-        assertEquals(expected, actual);
+        return String.format("\"%s\": %s entries | First: '%s', Last '%s'", letter, size, first, last);
     }
-
+    
     public void testDictionariesList() {
         String expected = Arrays.toString(new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"});
-        String actual = Arrays.toString(Dictionaries.buildDictionaries(TEST_DATA.TEST_LETTERS, TEST_DATA.TEST_LETTERS, TEST_DATA.INVALID_PAIRS).keySet().toArray(new String[0]));
+        String actual = Arrays.toString(DICTIONARIES.keySet().toArray(new String[0]));
 
         Tests.printTestOutput("Dictionary List", expected, actual);
         assertEquals(expected, actual);
     }
 
-    public void testDictionariesContent() {
-        String expected = Arrays.deepToString(TEST_DATA.DICT_A_FIRST_FIVE);
+    public void testDictionaryAUnsorted() {
+        String expected = "\"A\": 96 entries | First: 'Ada', Last 'Alike'";
+        String actual = getDictionaryContent("A");
 
-        HashMap<String, List<String[]>> output = Dictionaries.buildDictionaries(TEST_DATA.TEST_LETTERS, TEST_DATA.TEST_LETTERS, TEST_DATA.INVALID_PAIRS);
-        List<String[]> testRead = output.get("A");
-        String[][] lines = new String[5][];
-        for (int i = 0; i < 5; i++) {
-            lines[i] = testRead.get(i);
-        }
-        String actual = Arrays.deepToString(lines);
-
-        Tests.printTestOutput("Dictionary List Read (First Five)", expected, actual);
+        Tests.printTestOutput("Dictionary A Size", expected, actual);
         assertEquals(expected, actual);
     }
 }

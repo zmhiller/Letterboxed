@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -55,5 +56,9 @@ public class Parsing {
         }
 
         return wordPairs;
+    }
+
+    public void sortDictionary(List<Word> dict) {
+        dict.sort(Comparator.comparing(Word::getAdjustedScore));
     }
 }

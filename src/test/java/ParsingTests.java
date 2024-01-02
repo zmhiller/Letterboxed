@@ -1,7 +1,4 @@
-import junit.framework.Assert;
 import junit.framework.TestCase;
-
-import java.util.List;
 
 public class ParsingTests extends TestCase {
 
