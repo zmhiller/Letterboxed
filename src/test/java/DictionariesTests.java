@@ -15,7 +15,7 @@ public class DictionariesTests extends TestCase {
 
         return String.format("\"%s\": %s entries | First: '%s', Last '%s'", letter, size, first, last);
     }
-    
+
     public void testDictionariesList() {
         String expected = Arrays.toString(new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"});
         String actual = Arrays.toString(DICTIONARIES.keySet().toArray(new String[0]));
@@ -26,7 +26,26 @@ public class DictionariesTests extends TestCase {
 
     public void testDictionaryAUnsorted() {
         String expected = "\"A\": 96 entries | First: 'Ada', Last 'Alike'";
-        String actual = getDictionaryContent("A");
+        List<Word> dictA = DICTIONARIES.get("A");
+        String size = String.valueOf(dictA.size());
+        String first = dictA.get(0).getWord();
+        String last = dictA.get(dictA.size() - 1).getWord();
+
+       String actual = String.format("\"A\": %s entries | First: '%s', Last '%s'", size, first, last);
+
+        Tests.printTestOutput("Dictionary A Size", expected, actual);
+        assertEquals(expected, actual);
+    }
+
+    public void testDictionaryASorted() {
+        String expected = "\"A\": 96 entries | First: 'Ajaja', Last 'Ale'";
+        List<Word> dictA = DICTIONARIES.get("A");
+        Parsing.sortDictionary(dictA);
+        String size = String.valueOf(dictA.size());
+        String first = dictA.get(0).getWord();
+        String last = dictA.get(dictA.size() - 1).getWord();
+
+       String actual = String.format("\"A\": %s entries | First: '%s', Last '%s'", size, first, last);
 
         Tests.printTestOutput("Dictionary A Size", expected, actual);
         assertEquals(expected, actual);

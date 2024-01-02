@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Parsing {
 
@@ -58,7 +55,8 @@ public class Parsing {
         return wordPairs;
     }
 
-    public void sortDictionary(List<Word> dict) {
-        dict.sort(Comparator.comparing(Word::getAdjustedScore));
+    public static void sortDictionary(List<Word> dict) {
+        dict.sort(Collections.reverseOrder(Comparator.comparing(Word::getAdjustedScore)));
+
     }
 }
