@@ -2,9 +2,7 @@ import com.opencsv.CSVReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Dictionaries {
 
@@ -37,4 +35,24 @@ public class Dictionaries {
 
         return dictionaries;
     }
+
+    public static void sortDictionaries(HashMap<String, List<Word>> dictionaries) {
+        for (String key : dictionaries.keySet()) {
+            List<Word> dict = dictionaries.get(key);
+            dict.sort(Collections.reverseOrder(Comparator.comparing(Word::getAdjustedScore)));
+        }
+    }
+
+    public static List<Word> getTopScoringWords(HashMap<String, List<Word>> dictionaries) {
+        List<Word> topWords = new ArrayList<>();
+        sortDictionaries(dictionaries);
+
+        for (String key : dictionaries.keySet()) {
+            List<Word> dict = dictionaries.get(key);
+            topWords.add(dict.get(0));
+        }
+        topWords.sort(Collections.reverseOrder(Comparator.comparing(Word::getAdjustedScore)));
+        return topWords;
+    }
 }
+

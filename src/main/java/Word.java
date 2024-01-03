@@ -4,22 +4,25 @@ import java.util.List;
 public class Word {
     private final String word;
     private final char[] letters;
-    private final int length, uniqueLetterCount;
     private final double baseScore;
     private double adjustedScore;
+
     private final List<String> uniqueLetters = new ArrayList<>();
 
     public Word(String[] dictionaryEntry) {
         this.word = dictionaryEntry[0];
         this.letters = this.word.toLowerCase().toCharArray();
-        this.length = this.word.length();
         this.baseScore = Double.parseDouble(dictionaryEntry[1]);
         this.adjustedScore = this.baseScore;
         listUniqueLetters();
-        this.uniqueLetterCount = this.uniqueLetters.size();
     }
 
-
+    public void adjustScore(double[] weights) {
+        this.adjustedScore = this.baseScore;
+        for (double weight : weights) {
+            this.adjustedScore *= weight;
+        }
+    }
 
     private void listUniqueLetters() {
         for (char c : this.letters) {
@@ -41,8 +44,12 @@ public class Word {
         return letterString;
     }
 
+    public int getUniqueLetterCount() {
+        return this.uniqueLetters.size();
+    }
+
     public String getWord() {
-        return word;
+        return this.word;
     }
 
     public char[] getLetters() {
@@ -50,20 +57,19 @@ public class Word {
     }
 
     public int length() {
-        return length;
+        return this.word.length();
     }
 
     public double getAdjustedScore() {
         return adjustedScore;
     }
 
-    public void setAdjustedScore(double adjustedScore) {
-        this.adjustedScore = adjustedScore;
+    public String getLast() {
+        return String.valueOf(this.letters[this.word.length() - 1]).toUpperCase();
     }
 
     public String toString() {
-        //String letters = this.uniqueLetters.toString();
         return String.format("\n'%s'\n\tBase Score: %.3f\n\tAdj. Score: %.3f\n\tUnique Letters (%d): %s",
-                this.word, this.baseScore, this.adjustedScore, this.uniqueLetterCount, this.uniqueLetters);
+                this.word, this.baseScore, this.adjustedScore, this.uniqueLetters.size(), this.uniqueLetters);
     }
 }

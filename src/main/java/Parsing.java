@@ -15,7 +15,7 @@ public class Parsing {
         return true;
     }
 
-    public  static boolean noInvalidLetters(String word, String validLetters) {
+    public static boolean noInvalidLetters(String word, String validLetters) {
         String invalidLetters = getInvalidLetters(validLetters);
 
         for (char c : validLetters.toCharArray()) {
@@ -32,6 +32,39 @@ public class Parsing {
         }
 
         return true;
+    }
+
+    protected static char[][] getSides(String letters) {
+        char[][] sides = new char[4][3];
+        int l = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                sides[i][j] = letters.toCharArray()[l];
+                l++;
+            }
+        }
+        return sides;
+    }
+
+    public static List<String> findInvalidPairs(String letters) {
+        List<String> invalidPairs = new ArrayList<>();
+        char[][] sides = getSides(letters);
+        int i, j, k;
+        for (i = 0; i < 4; i++) {
+            char[] side = Arrays.copyOf(sides[i], 3);
+            for (j = 0; j < 3; j++) {
+                for (k = 0; k < 3; k++) {
+                    if (side[j] != side[k]) {
+                        String pair = String.valueOf(side[j]) + side[k];
+                        if (!invalidPairs.contains(pair)) {
+                            invalidPairs.add(pair);
+                        }
+                    }
+                }
+            }
+        }
+
+        return invalidPairs;
     }
 
     public static String getInvalidLetters(String validLetters) {
@@ -58,5 +91,9 @@ public class Parsing {
     public static void sortDictionary(List<Word> dict) {
         dict.sort(Collections.reverseOrder(Comparator.comparing(Word::getAdjustedScore)));
 
+    }
+
+    public static void main(String[] args) {
+        System.out.println(findInvalidPairs("abcdefghijkl"));
     }
 }
