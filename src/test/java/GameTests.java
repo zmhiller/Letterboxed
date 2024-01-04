@@ -1,6 +1,6 @@
 import junit.framework.TestCase;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameTests extends TestCase {
@@ -10,7 +10,7 @@ public class GameTests extends TestCase {
         List<String> expected = TEST_DATA.INVALID_PAIRS;
         List<String> actual = testGame.getInvalidPairs();
 
-        Tests.printTestOutput("Game - Invalid Pairs", expected.toString(), actual.toString());
+        Tests.printTestOutput("Game Invalid Pairs", expected.toString(), actual.toString());
         assertEquals(expected, actual);
     }
 
@@ -24,7 +24,26 @@ public class GameTests extends TestCase {
 
        String actual = String.format("\"A\": %s entries | First: '%s', Last '%s'", size, first, last);
 
-       Tests.printTestOutput("Game - Dictionaries", expected, actual);
+       Tests.printTestOutput("Game Dictionaries", expected, actual);
+
+       ////
+        for (char c : TEST_DATA.TEST_LETTERS.toCharArray()) {
+            List<Word> dict = TEST_DATA.DICTIONARIES.get(String.valueOf(c).toUpperCase());
+            String dSize = String.valueOf(dict.size());
+            String dFirst = dict.get(0).getWord();
+            String dLast = dict.get(dict.size() - 1).getWord();
+            System.out.printf("\n\"%s\": %s entries | First: '%s', Last '%s'", String.valueOf(c).toUpperCase(), dSize, dFirst, dLast);
+        }
+        ////
+
+        assertEquals(expected, actual);
+    }
+
+    public void testDictionariesList() {
+        String expected = TEST_DATA.TEST_DICTIONARY_KEYS; //
+        String actual = Arrays.toString(testGame.getDictionaries().keySet().toArray(new String[0]));
+
+        Tests.printTestOutput("Game Dictionary List", expected, actual);
         assertEquals(expected, actual);
     }
 

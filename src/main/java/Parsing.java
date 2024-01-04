@@ -34,29 +34,6 @@ public class Parsing {
         return true;
     }
 
-
-
-    public static List<String> findInvalidPairs(String letters) {
-        List<String> invalidPairs = new ArrayList<>();
-        char[][] sides = GameBoard.defineSides(letters);
-        int i, j, k;
-        for (i = 0; i < 4; i++) {
-            char[] side = Arrays.copyOf(sides[i], 3);
-            for (j = 0; j < 3; j++) {
-                for (k = 0; k < 3; k++) {
-                    if (side[j] != side[k]) {
-                        String pair = String.valueOf(side[j]) + side[k];
-                        if (!invalidPairs.contains(pair)) {
-                            invalidPairs.add(pair);
-                        }
-                    }
-                }
-            }
-        }
-
-        return invalidPairs;
-    }
-
     public static String getInvalidLetters(String validLetters) {
         String invalidLetters = "abcdefghijklmnopqrstuvwxyz";
 
@@ -78,7 +55,4 @@ public class Parsing {
         return wordPairs;
     }
 
-    public static void main(String[] args) {
-        System.out.println(findInvalidPairs("abcdefghijkl"));
-    }
 }

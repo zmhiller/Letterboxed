@@ -1,4 +1,3 @@
-import junit.framework.Test;
 import junit.framework.TestCase;
 
 import java.util.List;
@@ -30,10 +29,4 @@ public class ParsingTests extends TestCase {
 
     }
 
-    public void testFindingInvalidPairs() {
-        List<String> expected = TEST_DATA.INVALID_PAIRS;
-        List<String> actual = Parsing.findInvalidPairs(TEST_DATA.TEST_LETTERS);
-        Tests.printTestOutput("Finding Invalid Pairs", expected.toString(), actual.toString());
-        assertEquals(expected, actual);
-    }
 }

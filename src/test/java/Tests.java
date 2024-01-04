@@ -5,8 +5,7 @@ public class Tests {
 
     public static Test suite() {
         TestSuite testSuite = new TestSuite("Letterboxed Test Suite");
-
-        testSuite.addTestSuite(DictionariesTests.class);
+        
         testSuite.addTestSuite(ParsingTests.class);
         testSuite.addTestSuite(WordTests.class);
         testSuite.addTestSuite(GameTests.class);

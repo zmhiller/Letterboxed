@@ -25,8 +25,10 @@ public class Dictionaries {
         return dictionary;
     }
 
-    public static HashMap<String, List<Word>> buildDictionaries(String validLetters, List<String> invalidPairs) {
+    public static HashMap<String, List<Word>> buildDictionaries(Game game) {
         HashMap<String, List<Word>> dictionaries = new HashMap<>();
+        String validLetters = game.getValidLetters();
+        List<String> invalidPairs = game.getInvalidPairs();
 
         for (char c : validLetters.toCharArray()) {
             String key = String.valueOf(c).toUpperCase();
