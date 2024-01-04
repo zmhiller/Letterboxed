@@ -10,13 +10,11 @@ public class Game {
     private final HashMap<String, List<Word>> DICTIONARIES;
     private final GameBoard BOARD;
 
-
-
     public Game(String letters) {
         this.VALID_LETTERS = letters;
         this.INVALID_PAIRS = Parsing.findInvalidPairs(letters);
         this.DICTIONARIES = Dictionaries.buildDictionaries(letters, this.INVALID_PAIRS);
-        this.BOARD = new GameBoard(letters);
+        this.BOARD = new GameBoard(this);
         this.SOLUTION_SET = new ArrayList<>();
     }
 

@@ -1,11 +1,11 @@
 public class GameBoard {
     private final char[][] sides;
 
-    public GameBoard(String letters) {
-        this.sides = getSides(letters);
+    public GameBoard(Game game) {
+        this.sides = defineSides(game.getValidLetters());
     }
 
-    protected static char[][] getSides(String letters) {
+    protected static char[][] defineSides(String letters) {
         char[][] sides = new char[4][3];
         int l = 0;
         for (int i = 0; i < 4; i++) {
@@ -15,5 +15,9 @@ public class GameBoard {
             }
         }
         return sides;
+    }
+
+    public char[][] getSides() {
+        return this.sides;
     }
 }

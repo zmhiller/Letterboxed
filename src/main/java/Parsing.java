@@ -38,7 +38,7 @@ public class Parsing {
 
     public static List<String> findInvalidPairs(String letters) {
         List<String> invalidPairs = new ArrayList<>();
-        char[][] sides = getSides(letters);
+        char[][] sides = GameBoard.defineSides(letters);
         int i, j, k;
         for (i = 0; i < 4; i++) {
             char[] side = Arrays.copyOf(sides[i], 3);

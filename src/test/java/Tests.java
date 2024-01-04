@@ -10,6 +10,7 @@ public class Tests {
         testSuite.addTestSuite(ParsingTests.class);
         testSuite.addTestSuite(WordTests.class);
         testSuite.addTestSuite(GameTests.class);
+        testSuite.addTestSuite(GameBoardTests.class);
         return testSuite;
     }
 

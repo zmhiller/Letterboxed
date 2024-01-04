@@ -6,10 +6,10 @@ import java.util.*;
 
 public class Dictionaries {
 
-    static final String DICTIONARIES = "src/main/resources/dictionaries/";
+    static final String DICTIONARY_PATH = "src/main/resources/dictionaries/";
 
     public static List<Word> readDictionary(String csv, String validLetters, List<String> invalidPairs) {
-        Path dictionaryCSV = Path.of(DICTIONARIES + csv);
+        Path dictionaryCSV = Path.of(DICTIONARY_PATH + csv);
         List<Word> dictionary = new ArrayList<>();
         try (CSVReader csvReader = new CSVReader(Files.newBufferedReader(dictionaryCSV))) {
             csvReader.readNext();
