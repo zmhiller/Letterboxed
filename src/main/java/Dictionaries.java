@@ -32,7 +32,7 @@ public class Dictionaries {
             String key = String.valueOf(c).toUpperCase();
             dictionaries.put(key, readDictionary(String.format("dict%s.csv", key), validLetters, invalidPairs));
         }
-
+        sortDictionaries(dictionaries);
         return dictionaries;
     }
 

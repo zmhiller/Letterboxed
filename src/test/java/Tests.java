@@ -9,6 +9,7 @@ public class Tests {
         testSuite.addTestSuite(DictionariesTests.class);
         testSuite.addTestSuite(ParsingTests.class);
         testSuite.addTestSuite(WordTests.class);
+        testSuite.addTestSuite(GameTests.class);
         return testSuite;
     }
 

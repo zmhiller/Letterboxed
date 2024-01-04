@@ -88,11 +88,6 @@ public class Parsing {
         return wordPairs;
     }
 
-    public static void sortDictionary(List<Word> dict) {
-        dict.sort(Collections.reverseOrder(Comparator.comparing(Word::getAdjustedScore)));
-
-    }
-
     public static void main(String[] args) {
         System.out.println(findInvalidPairs("abcdefghijkl"));
     }

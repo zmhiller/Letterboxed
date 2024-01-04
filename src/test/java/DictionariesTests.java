@@ -15,33 +15,10 @@ public class DictionariesTests extends TestCase {
         assertEquals(expected, actual);
     }
 
-    public void testDictionariesUnsorted() {
-        String expected = "\"A\": 96 entries | First: 'Ada', Last 'Alike'";
-        List<Word> dictA = DICTIONARIES.get("A");
-        String size = String.valueOf(dictA.size());
-        String first = dictA.get(0).getWord();
-        String last = dictA.get(dictA.size() - 1).getWord();
-
-       String actual = String.format("\"A\": %s entries | First: '%s', Last '%s'", size, first, last);
-
-        Tests.printTestOutput("Dictionaries (Unsorted)", expected, actual);
-
-        ////
-        for (char c : TEST_DATA.TEST_LETTERS.toCharArray()) {
-            List<Word> dict = DICTIONARIES.get(String.valueOf(c).toUpperCase());
-            String dSize = String.valueOf(dict.size());
-            String dFirst = dict.get(0).getWord();
-            String dLast = dict.get(dict.size() - 1).getWord();
-            System.out.printf("\n\"%s\": %s entries | First: '%s', Last '%s'", String.valueOf(c).toUpperCase(), dSize, dFirst, dLast);
-        }
-        ////
-        assertEquals(expected, actual);
-    }
-
     public void testDictionariesSorted() {
         String expected = "\"A\": 96 entries | First: 'Ajaja', Last 'Ale'";
+        Dictionaries.sortDictionaries(DICTIONARIES);
         List<Word> dictA = DICTIONARIES.get("A");
-        Parsing.sortDictionary(dictA);
         String size = String.valueOf(dictA.size());
         String first = dictA.get(0).getWord();
         String last = dictA.get(dictA.size() - 1).getWord();
