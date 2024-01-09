@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Letterboxed.iml" filepath="$PROJECT_DIR$/.idea/Letterboxed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Letterboxed.iml" filepath="$PROJECT_DIR$/Letterboxed.iml" />
     </modules>
   </component>
 </project>
